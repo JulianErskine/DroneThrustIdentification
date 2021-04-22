@@ -12,11 +12,31 @@ The drone may be manually or automatically flown in an aggressive manner in orde
 
 If you want to have an accurate force over the range of your safe battery voltage, you should perform test flights at full, mid, and low voltage. Because the data will be heavily weighted around the hover thrust, you may also want to add weight to some flights so that your data isn't skewed. To evaluate the quality of the regression, it is recommended to perform some flights for identification and some flights for identification. 
 
-## Calculating Thrust
-<img src="https://render.githubusercontent.com/render/math?math=m\ddot{\mathbf{x}} = m\mathbf{R}^{-1}\mathbf{g} + \mathbf{f}">
+Once you have several flight log files (these can be taken directly from the pixhawk SD card, or via telemetry/usb connection), these should be converted with the ulog2csv.sh script to create a folder of csv files for each flight. 
 
+## Calculating Thrust
+<p align="center">
+<img src="https://latex.codecogs.com/svg.latex?\normalfont&space;m\ddot{\mathbf{x}} = m\mathbf{R}^{-1}\mathbf{g} + \mathbf{f}" title="m\ddot{\mathbf{x}} = m\mathbf{R}^{-1}\mathbf{g} + \mathbf{f}" />
+</p>
+TODO 
+
+This means that the thrust is simply the z-component of the accelerometer measurement scaled by the mass of the drone.
 
 ## Running the Identification
-The main.py script shows an example of how to perform the identification. It will perform a regression of the form
-<img src="https://render.githubusercontent.com/render/math?math=f=ax + bV + c">
+The main.py script shows an example of how to perform the identification. Each flight should be used to create a 
 
+
+It will perform a regression of the form
+<p align="center">
+<img src="https://latex.codecogs.com/svg.latex?\normalfont&space;f=ax + bV + c" title="f=ax + bV + c" />
+</p>
+
+It will perform a regression of the form
+<p align="center">
+<img src="https://latex.codecogs.com/svg.latex?\normalfont&space;f=ax^2 + bx + cV" title="f=ax + bV + c" />
+</p>
+
+It will perform a regression of the form
+<p align="center">
+<img src="https://latex.codecogs.com/svg.latex?\normalfont&space;f=ax + b" title="f=ax + bV + c" />
+</p>
